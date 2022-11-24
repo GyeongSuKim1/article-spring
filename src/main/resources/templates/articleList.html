@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Article_List</title>
+</head>
+
+<style>
+  .layout {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+
+  td{
+    border: 1px solid gray;
+  }
+</style>
+
+<body>
+
+<div class="layout">
+<a href="/"> HOME </a>
+  <table>
+    <thead>
+      <tr>
+        <th>Num</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="article : ${list}">
+        <td th:text="${article.id}">
+          PK
+        </td>
+        <td>
+          <a th:text="${article.title}" th:href="@{/article/view(id=${article.id})}">Title</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+</html>

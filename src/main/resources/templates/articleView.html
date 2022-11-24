@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Article_Detail</title>
+</head>
+
+<style>
+    .layout {
+        width: 500px;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+    .btn-layout {
+        width: 200px;
+        display: flex;
+        justify-content: space-around;
+
+        margin-bottom: 20px;
+    }
+
+    .btn-layout > a {
+        padding: 10px;
+        text-decoration: none;
+
+        border: 2px solid;
+        border-radius: 20%;
+
+        font-size: 15px;
+        font-weight: bold;
+
+        color: white;
+        background: #ff5858;
+    }
+</style>
+
+<body>
+<div class="layout">
+    <div class="btn-layout">
+        <a th:href="@{/article/modify/{id}(id=${article.id})}"> 수정 </a>
+        <a th:href="@{/article/delete(id=${article.id})}"> 삭제 </a>
+        <a href="/">Home</a>
+    </div>
+    <sub style="color: gray">
+        작성일자 :
+        <span th:text="${article.created_at}">Created_at</span>
+    </sub>
+    <br>
+    <sub style="color: gray">
+        수정일자 :
+        <span th:text="${article.updated_at}">updated_at</span>
+    </sub>
+    <h1>
+        제목 :
+        <span th:text="${article.title}">Title</span>
+    </h1>
+    <p>
+        내용 :
+        <span th:text="${article.content}">Content</span>
+    </p>
+</div>
+
+</body>
+</html>
