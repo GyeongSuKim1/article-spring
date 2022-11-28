@@ -22,7 +22,7 @@ public class ArticleService {
         // 매개변수 안에 Article이라는 클래스의 article변수로 반환하여 save에 담아준다.
     public void articleWrite(Article article) {
 
-        articleRepository.save(article);
+            articleRepository.save(article);
     }
 
     // 게시글 리스트 처리
@@ -42,12 +42,5 @@ public class ArticleService {
     public void articleDelete (Integer id) {
 
         articleRepository.deleteById(id);
-    }
-
-    // 게시글 수정
-    public void articleModify(Integer id) {
-
-    articleRepository.findById(id);
-
     }
 }

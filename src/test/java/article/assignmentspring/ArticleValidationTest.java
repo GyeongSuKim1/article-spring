@@ -9,24 +9,37 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.util.Set;
 
 @SpringBootTest
 @Transactional
-public class ArticleServiceTest {
+public class ArticleValidationTest {
 
     @Autowired ArticleService articleService;
     @Autowired ArticleRepository articleRepository;
 
+    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    Validator validator = factory.getValidator();
+
     @Test
-    void articleWrite() {
+    void articleValidation() {
         // given
         Article article = new Article();
 
-        article.setTitle("제목 입니다.");
-        article.setContent("1");
+        article.setTitle("");
+        article.setContent("");
 
         // when
-        articleRepository.save(article);
+        Set<ConstraintViolation<Article>> violations = validator.validate(article);
+        for (ConstraintViolation<Article> violation : violations) {
+        System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+            System.out.println("violation : \n" + violation);
+        System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+            System.out.println("violation.getMessage() : \n" + violation.getMessage());
+        }
 
         // then
         System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");

@@ -5,9 +5,7 @@ import article.assignmentspring.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ArticleController {
@@ -30,7 +28,6 @@ public class ArticleController {
     @PostMapping("/article/writepro")
     // entity에서 @Data를 해주었기 때문에 엔티티 형식을 그대로 받아줄 수 있음.
     public String articlePro(Article article) {
-
         System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
         System.out.println("Id : " + article.getId());
         System.out.println("Title : " + article.getTitle());
@@ -39,6 +36,7 @@ public class ArticleController {
         System.out.println("Created_at : " + article.getCreated_at());
         System.out.println("Updated_at : " + article.getUpdated_at());
         System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+
         articleService.articleWrite(article);
         return "redirect:/article/list";
     }
@@ -49,7 +47,6 @@ public class ArticleController {
 
         // list라는 이름으로 받아서 넘김
         model.addAttribute("list" ,articleService.articleList());
-
         return "articleList";
     }
 
@@ -82,7 +79,7 @@ public class ArticleController {
     }
 
     // 게시글 수정 POST
-    @PostMapping("/article/update/{id}")
+    @PostMapping( "/article/update/{id}")
     public String articleUpdate(@PathVariable("id") Integer id,
                                 Article article) {
 
