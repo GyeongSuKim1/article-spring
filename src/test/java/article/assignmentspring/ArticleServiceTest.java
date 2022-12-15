@@ -1,14 +1,12 @@
 package article.assignmentspring;
 
-import article.assignmentspring.entity.Article;
-import article.assignmentspring.repository.ArticleRepository;
+import article.assignmentspring.domain.entity.Article;
+import article.assignmentspring.domain.repository.ArticleRepository;
 import article.assignmentspring.service.ArticleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.validation.ConstraintViolation;
 
 @SpringBootTest
 @Transactional
